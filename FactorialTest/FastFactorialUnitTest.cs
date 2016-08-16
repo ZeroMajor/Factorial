@@ -10,6 +10,15 @@ namespace FactorialTest
 	public class FastFactorialUnitTest
 	{
 		[TestMethod]
+		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		public void TestNegativeFast()
+		{
+			var factory = new CalculatorFactory();
+			var calc = factory.GetFactorialCalculator(CalculatorType.Fast);
+			calc.Factorial(-1);
+		}
+
+		[TestMethod]
 		public void TestZeroFast()
 		{
 			var factory = new CalculatorFactory();

@@ -12,6 +12,7 @@ namespace Factorial.Interface
 		/// </summary>
 		/// <param name="n">The base of factorial</param>
 		/// <returns><see cref="BigInteger"/> value of calculated factorial</returns>
-		BigInteger Factorial(uint n);
+		/// <exception cref="System.ArgumentOutOfRangeException">Thrown when base is negative</exception>
+		BigInteger Factorial(int n);
 	}
 }

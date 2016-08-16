@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using Factorial.Interface;
 
 /// <summary>
@@ -11,8 +12,11 @@ namespace Factorial.Calculators
 	/// </summary>
 	public class SimpleCalculator : IFactorialCalculator
 	{
-		public BigInteger Factorial(uint n)
+		public BigInteger Factorial(int n)
 		{
+			if (n < 0)
+				throw new ArgumentOutOfRangeException("Factorial base should be non-negative");
+
 			if (n == 0)
 				return 1;
 			if (n == 1
@@ -20,8 +24,9 @@ namespace Factorial.Calculators
 				return n;
 
 			BigInteger result = 2;
-			for (uint i = 3; i <= n; i++)
+			for (int i = 3; i <= n; i++)
 				result *= i;
+
 			return result;
 		}
 	}

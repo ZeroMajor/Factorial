@@ -10,6 +10,16 @@ namespace FactorialTest
 	public class SimpleFactorialUnitTest
 	{
 		[TestMethod]
+		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		public void TestNegativeSimple()
+		{
+			var factory = new CalculatorFactory();
+			var calc = factory.GetFactorialCalculator(CalculatorType.Simple);
+			calc.Factorial(-1);
+		}
+
+
+		[TestMethod]
 		public void TestZeroSimple()
 		{
 			var factory = new CalculatorFactory();

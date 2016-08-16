@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using Factorial.Interface;
 
 /// <summary>
@@ -18,7 +19,7 @@ namespace Factorial.Calculators
 		/// <param name="from">From value</param>
 		/// <param name="thru">Thru value</param>
 		/// <returns>Result of calculation</returns>
-		private BigInteger TreeCalc(uint from, uint thru)
+		private BigInteger TreeCalc(int from, int thru)
 		{
 			if (from > thru)
 				return 1;
@@ -27,13 +28,16 @@ namespace Factorial.Calculators
 			if (thru - from == 1)
 				return (BigInteger)from * thru;
 
-			uint mid = (from + thru) / 2;
+			int mid = (from + thru) / 2;
 
 			return TreeCalc(from, mid) * TreeCalc(mid + 1, thru);
 		}
 
-		public BigInteger Factorial(uint n)
+		public BigInteger Factorial(int n)
 		{
+			if (n < 0)
+				throw new ArgumentOutOfRangeException("Factorial base should be non-negative");
+
 			if (n == 0)
 				return 1;
 
