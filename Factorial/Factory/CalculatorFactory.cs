@@ -12,7 +12,7 @@ namespace Factorial.Factory
 		/// <summary>
 		/// Simple implementation, suitable for small numbers
 		/// </summary>
-		Simple,
+		Simple = 1,
 		/// <summary>
 		/// Faster calculation, suitable for numbers > 50
 		/// </summary>

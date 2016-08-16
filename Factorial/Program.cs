@@ -9,35 +9,63 @@ namespace Factorial
 	{
 		static void Main(string[] args)
 		{
+			Console.WriteLine("This software calculates factorial (n!) using three algorithms.");
 			var factory = new CalculatorFactory();
-			var calc1 = factory.GetFactorialCalculator(CalculatorType.Simple);
-			var calc2 = factory.GetFactorialCalculator(CalculatorType.Fast);
-
-			// warming
-			for (int i = 0; i < 10000; i++)
+			while (true)
 			{
-				for (uint n = 20; n < 50; n++)
+				CalculatorType calcType;
+				bool inputCorrect;
+				string str;
+				
+				while (true) 
 				{
-					var val1 = calc1.Factorial(n);
-					var val2 = calc2.Factorial(n);
+					Console.WriteLine("Please input the number of required algorithm: 1 - Simple, 2 - Fast, 3 - BinarySplit");
+					str = Console.ReadLine();
+					int val;
+					inputCorrect = Int32.TryParse(str, out val) && Enum.IsDefined(typeof(CalculatorType), val);
+					if (inputCorrect)
+					{
+						calcType = (CalculatorType)val;
+						break;
+					}
+					else
+					{
+						Console.WriteLine("Number incorrect, please try again");
+					}
+				}
+
+				int n;
+
+				while (true)
+				{
+					Console.WriteLine("Please input the integer which you need factorial for:");
+					str = Console.ReadLine();
+					inputCorrect = Int32.TryParse(str, out n);
+					if (inputCorrect)
+					{
+						break;
+					}
+					else
+					{
+						Console.WriteLine("Number incorrect, please try again");
+					}
+				}
+
+				var calculator = factory.GetFactorialCalculator(calcType);
+				try
+				{
+					Console.WriteLine("{0}!  = {1}", n, calculator.Factorial(n));
+				}
+				catch (ArgumentOutOfRangeException aorEx)
+				{
+					Console.WriteLine("Error occured: {0}", aorEx.Message);
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("General error occured: {0}", ex.Message);
 				}
 			}
 
-			var sw1 = Stopwatch.StartNew();
-			for (int i = 0; i < 20000; i++)
-			{
-				var val = calc1.Factorial(500);
-			}
-			sw1.Stop();
-
-			var sw2 = Stopwatch.StartNew();
-			for (int i = 0; i < 20000; i++)
-			{
-				var val = calc2.Factorial(500);
-			}
-			sw2.Stop();
-
-			Console.WriteLine("Simple: {0} ms{1}Fast: {2} ms", sw1.ElapsedMilliseconds, Environment.NewLine, sw2.ElapsedMilliseconds);
 		}
 	}
 }
