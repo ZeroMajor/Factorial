@@ -16,7 +16,11 @@ namespace Factorial.Factory
 		/// <summary>
 		/// Faster calculation, suitable for numbers > 50
 		/// </summary>
-		Fast
+		Fast,
+		/// <summary>
+		/// Divide-and-conquer factorial algorithm based on formula provided at http://www.luschny.de/math/factorial/binarysplitfact.html
+		/// </summary>
+		BinarySplit
 	};
 
 	/// <summary>
@@ -32,6 +36,8 @@ namespace Factorial.Factory
 					return new SimpleCalculator();
 				case CalculatorType.Fast:
 					return new FastCalculator();
+				case CalculatorType.BinarySplit:
+					return new BinarySplitCalculator();
 				default:
 					throw new NotImplementedException("Such factorial calculation is not defined");
 			}

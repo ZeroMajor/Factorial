@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculators\BinarySplitCalculator.cs" />
     <Compile Include="Calculators\FastCalculator.cs" />
     <Compile Include="Calculators\SimpleCalculator.cs" />
     <Compile Include="Factory\CalculatorFactory.cs" />

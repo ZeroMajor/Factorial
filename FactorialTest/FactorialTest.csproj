@@ -54,6 +54,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BinarySplitFactorialUnitTest.cs" />
     <Compile Include="FastFactorialUnitTest.cs" />
     <Compile Include="SimpleFactorialUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
